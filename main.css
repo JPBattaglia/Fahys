@@ -20,6 +20,11 @@ h1,h2,h3{
   font-weight:700;
   color:var(--cream);
 }
+
+h3{
+  color:var(--gold);
+  font-weight: bolder;
+}
 .container{max-width:1100px;margin:0 auto;text-align:center;}
 p{font-size:18px;line-height:1.65;}
 
@@ -138,15 +143,14 @@ p{font-size:18px;line-height:1.65;}
 /* BUTTONS -------------------------------------------------- */
 .btn{
   margin-top:24px;
-  padding:16px 38px;
+  padding:14px 42px;
   background:var(--gold);
   color:var(--black);
   font-weight:600;
-  font-size:20px;
+  font-size:22px;
   text-decoration:none;
   border-radius:999px;
   transition:.25s;
-  border:none;
   box-shadow:0 6px 20px rgba(201,162,90,0.4);
 }
 .btn:hover{
