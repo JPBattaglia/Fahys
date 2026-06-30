@@ -48,7 +48,7 @@
     <p>Cocktails • Whiskey • Wine • Beer</p><br><br>
 
     <!-- TOP BUTTON: BOOK EVENT -->
-    <a href="https://app.perfectvenue.com/venues/fahy-s-fog-and-barrel/hello" class="btn btn-dynamic" target="_blank" rel="noopener noreferrer">Book an Event</a>
+    <button type="button" class="btn btn-dynamic open-booking">Book an Event</button>
   </div>
 </section>
 
@@ -130,6 +130,36 @@
   </div>
 </section>
 
+
+<div id="booking-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="booking-title" aria-hidden="true">
+  <div class="modal-content booking-modal-content">
+    <div class="booking-modal-header">
+      <div class="booking-heading">
+        <span class="booking-kicker">Fahy’s Fog & Barrel</span>
+        <h2 id="booking-title">Book Your Event</h2>
+      </div>
+      <button type="button" class="booking-close" aria-label="Close booking form" onclick="closeBookingModal()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <div class="booking-frame-wrap">
+      <iframe
+        id="perfectvenue-frame"
+        src="https://app.perfectvenue.com/venues/fahy-s-fog-and-barrel/hello"
+        title="Book an event at Fahy's Fog & Barrel"
+        loading="lazy"
+        allow="payment">
+      </iframe>
+    </div>
+
+    <p class="modal-note booking-fallback">
+      If the booking form does not appear,
+      <a href="https://app.perfectvenue.com/venues/fahy-s-fog-and-barrel/hello" target="_blank" rel="noopener noreferrer">open it in a new tab</a>.
+    </p>
+  </div>
+</div>
+
 <!-- MOBILE-ONLY STICKY CALL BAR -->
 <a href="tel:6503502636" class="mobile-call-bar" aria-label="Call Fahy's Fog & Barrel">
   Call Fahy’s Now
@@ -147,6 +177,42 @@
 
 <script src="carousel.js"></script>
 
+
+<script>
+const bookingModal = document.getElementById('booking-modal');
+const openBookingButtons = document.querySelectorAll('.open-booking');
+const closeBookingButton = bookingModal.querySelector('.booking-close');
+
+function openBookingModal() {
+  bookingModal.classList.add('show');
+  bookingModal.setAttribute('aria-hidden', 'false');
+  document.body.classList.add('modal-open');
+  closeBookingButton.focus();
+}
+
+function closeBookingModal() {
+  bookingModal.classList.remove('show');
+  bookingModal.setAttribute('aria-hidden', 'true');
+  document.body.classList.remove('modal-open');
+}
+
+openBookingButtons.forEach(button => button.addEventListener('click', openBookingModal));
+closeBookingButton.addEventListener('click', event => {
+  event.preventDefault();
+  event.stopPropagation();
+  closeBookingModal();
+});
+
+bookingModal.addEventListener('click', event => {
+  if (event.target === bookingModal) closeBookingModal();
+});
+
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && bookingModal.classList.contains('show')) {
+    closeBookingModal();
+  }
+});
+</script>
 
 </body>
 </html>
