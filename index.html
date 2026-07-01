@@ -22,6 +22,28 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="main.css" />
+
+  <style>
+  /* Self-contained Perfect Venue modal styles */
+  #booking-modal{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;padding:24px;background:rgba(0,0,0,.86);opacity:0;pointer-events:none;transition:opacity .25s ease;}
+  #booking-modal.show{opacity:1;pointer-events:auto;}
+  #booking-modal .booking-modal-content{width:min(94vw,980px);max-width:980px;height:min(94dvh,940px);max-height:94dvh;padding:0;display:flex;flex-direction:column;overflow:hidden;background:#141414;border:2px solid #c9a25a;border-radius:22px;box-shadow:0 30px 100px rgba(0,0,0,.82);text-align:center;}
+  #booking-modal .booking-modal-header{flex:0 0 auto;display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:92px;padding:18px 22px 16px 28px;border-bottom:2px solid #c9a25a;background:radial-gradient(circle at 10% 0%,rgba(201,162,90,.18),transparent 38%),#0b0b0b;}
+  #booking-modal .booking-heading{text-align:left;}
+  #booking-modal .booking-kicker{display:block;margin-bottom:4px;color:#c9a25a;font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;}
+  #booking-modal .booking-modal-header h2{margin:0;color:#f7f2e9;font-family:"Playfair Display",serif;font-size:30px;line-height:1.05;}
+  #booking-modal .booking-close{flex:0 0 46px;width:46px;height:46px;display:grid;place-items:center;padding:0;border:2px solid #c9a25a;border-radius:50%;background:#141414;color:#c9a25a;font:inherit;font-size:32px;line-height:1;cursor:pointer;appearance:none;-webkit-appearance:none;}
+  #booking-modal .booking-close span{display:block;transform:translateY(-2px);}
+  #booking-modal .booking-close:hover,#booking-modal .booking-close:focus-visible{background:#c9a25a;color:#0b0b0b;outline:none;}
+  #booking-modal .booking-frame-wrap{flex:1 1 auto;min-height:0;margin:14px 14px 10px;overflow:hidden;border:2px solid #9f7b41;border-radius:14px;background:#fff;box-shadow:0 12px 34px rgba(0,0,0,.42);}
+  #booking-modal .booking-frame-wrap iframe{display:block;width:100%;height:100%;min-height:0;border:0;background:#fff;}
+  #booking-modal .booking-fallback{flex:0 0 auto;margin:0;padding:0 18px 14px;color:rgba(247,242,233,.8);font-size:13px;}
+  #booking-modal .booking-fallback a{color:#c9a25a;font-weight:600;text-decoration:underline;text-underline-offset:3px;}
+  body.modal-open{overflow:hidden;}
+  body.modal-open .mobile-call-bar{display:none!important;}
+  @media(max-width:768px){#booking-modal{align-items:flex-start;justify-content:flex-start;overflow:hidden;padding:0;}#booking-modal .booking-modal-content{width:100vw;max-width:none;height:100dvh;max-height:100dvh;margin:0;border:0;border-radius:0;}#booking-modal .booking-modal-header{min-height:76px;padding:calc(10px + env(safe-area-inset-top)) 12px 10px 16px;}#booking-modal .booking-kicker{font-size:9px;letter-spacing:.14em;}#booking-modal .booking-modal-header h2{font-size:23px;}#booking-modal .booking-close{flex-basis:42px;width:42px;height:42px;font-size:29px;}#booking-modal .booking-frame-wrap{margin:8px 8px 6px;border-radius:10px;}#booking-modal .booking-fallback{padding:2px 12px calc(10px + env(safe-area-inset-bottom));font-size:11px;line-height:1.35;}}
+  @media(max-width:420px){#booking-modal .booking-modal-header h2{font-size:21px;}#booking-modal .booking-kicker{display:none;}}
+  </style>
 </head>
 <body>
 
